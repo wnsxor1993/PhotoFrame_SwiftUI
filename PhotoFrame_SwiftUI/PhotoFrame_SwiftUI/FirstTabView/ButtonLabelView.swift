@@ -10,21 +10,19 @@ import os
 
 struct ButtonLabelView: View {
     var body: some View {
-        VStack{
-            Label{
-                Text("Zeto's SwiftUI")
-                    .foregroundColor(.gray)
-            } icon: {
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
-            }
-            .font(.title)
-            .padding(.bottom, 20)
-            
-            Button(action: {
-                os_log("Button Clicked")
-            }){
-                HStack{
+        NavigationView{
+            VStack{
+                Label{
+                    Text("Zeto's SwiftUI")
+                        .foregroundColor(.gray)
+                } icon: {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }
+                .font(.title)
+                .padding(.bottom, 10)
+                
+                NavigationLink(destination: ChangableView()){
                     Image(systemName: "heart.fill")
                         .foregroundColor(.red)
                     Text("Click Here")
