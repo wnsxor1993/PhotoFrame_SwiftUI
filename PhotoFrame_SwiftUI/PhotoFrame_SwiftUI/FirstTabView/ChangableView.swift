@@ -10,13 +10,14 @@ import SwiftUI
 struct ChangableView: View {
     @State private var imageIndex = 0
     @State private var image = ImageName.noneImage
+    @State private var showSheet = false
     
     var body: some View {
         VStack{
             if image != ImageName.noneImage{
                 Image(image.showName())
                     .resizable()
-                    .frame(width: 250, height: 300, alignment: .center)
+                    .frame(width: 250, height: 300, alignment: .top)
             }
             Text("\(image.showName())")
                 .font(.title)
@@ -27,6 +28,17 @@ struct ChangableView: View {
                 image.changeCase(nowIndex: &imageIndex)
             }){
                 Text("Change")
+            }
+            .padding(.bottom, 10)
+            
+            Button(action: {
+                showSheet.toggle()
+            }){
+                Text("Show Sheet")
+                    .foregroundColor(.green)
+            }
+            .sheet(isPresented: $showSheet){
+                SheetView()
             }
         }
     }
